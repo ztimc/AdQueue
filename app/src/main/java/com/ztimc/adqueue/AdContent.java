@@ -10,4 +10,14 @@ public class AdContent implements TaskId {
     public String taskId() {
         return advert.taskId();
     }
+
+    @Override
+    public ResultState state() {
+        return advert.state;
+    }
+
+    @Override
+    public void setState(ResultState state) {
+        advert.state = state;
+    }
 }

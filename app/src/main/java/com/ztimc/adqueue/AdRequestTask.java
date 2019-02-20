@@ -1,5 +1,7 @@
 package com.ztimc.adqueue;
 
+import android.util.Log;
+
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -10,6 +12,7 @@ public class AdRequestTask implements Task<Advert> {
     @Override
     public Advert execute() {
 
+        Log.d("AdRequestTask", "请求队列任务执行");
         int randomInt = new Random().nextInt(10) + 1;
 
         // 30%失败

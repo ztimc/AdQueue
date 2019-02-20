@@ -1,5 +1,7 @@
 package com.ztimc.adqueue;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -118,8 +120,9 @@ public class AdQueue<T extends TaskId> {
                 }
 
                 mTaskResults.add(result);
-
+                Log.d("AdQueue","获取到广告");
                 if (mQueueListener != null) {
+                    Log.d("AdQueue","把广告给出");
                     assert result != null;
                     result.setState(TaskId.ResultState.USING);
                     mQueueListener.onTaskResult(result);

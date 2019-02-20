@@ -16,4 +16,9 @@ public class Advert implements TaskId {
     public ResultState state() {
         return state;
     }
+
+    @Override
+    public void setState(ResultState state) {
+        this.state = state;
+    }
 }
