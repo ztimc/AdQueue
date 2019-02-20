@@ -1,16 +1,16 @@
 package com.ztimc.adqueue;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
-public class AdGeneratorImp implements AdGenerator {
+public class AdRequestTask implements Task<Advert> {
 
-
-    private int mAdCount = 0;
+    private AtomicInteger mTaskNumber = new AtomicInteger(1);
 
     @Override
-    public void genAdvert(AdGeneratorListener listener) {
-        int randomInt = new Random().nextInt(10) + 1;
+    public Advert execute() {
 
+        int randomInt = new Random().nextInt(10) + 1;
 
         // 30%失败
         if (randomInt >= 3) {
@@ -22,11 +22,11 @@ public class AdGeneratorImp implements AdGenerator {
                 e.printStackTrace();
             }
             Advert advert = new Advert();
-            advert.description = "广告" + mAdCount;
-            listener.onAdComplete(advert);
-            mAdCount++;
+            advert.description = "广告";
+            advert.id = mTaskNumber.getAndIncrement() + "";
+            return advert;
         } else {
-            listener.onAdError();
+            return null;
         }
     }
 }
